@@ -1,5 +1,6 @@
 package com.example.demo_week_01.models;
 
+import com.example.demo_week_01.enums.GrantStatus;
 import jakarta.persistence.*;
 
 @Entity

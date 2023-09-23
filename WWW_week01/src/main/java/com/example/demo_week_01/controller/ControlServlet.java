@@ -1,6 +1,9 @@
 package com.example.demo_week_01.controller;
 
 
+import com.example.demo_week_01.enums.AccountStatus;
+import com.example.demo_week_01.enums.GrantStatus;
+import com.example.demo_week_01.enums.RoleStatus;
 import com.example.demo_week_01.models.*;
 import com.example.demo_week_01.service.AccountService;
 import com.example.demo_week_01.service.GrantAccessService;
@@ -56,6 +59,7 @@ public class ControlServlet extends HttpServlet {
             accountService.create(a);
             logger.info("sign success");
             resp.sendRedirect("login.jsp");
+
         } else if ("updateAccount".equals(action)) {
             String updateUsername = req.getParameter("updateUsername");
             String newPassword = req.getParameter("newPassword");
@@ -119,9 +123,9 @@ public class ControlServlet extends HttpServlet {
             if (a == null) {
                 resp.sendRedirect("error.jsp");
             }
-            Role r=new Role("role1","User","normal user", AccountStatus.ACTIVE);
+            Role r=new Role("role1","User","normal user", RoleStatus.ACTIVE);
             roleService.create(r);
-            GrantAccess g= new GrantAccess(a,r,"grant normal", GrantStatus.ENABLED);
+            GrantAccess g= new GrantAccess(a,r,"grant normal", GrantStatus.DELETE);
             gService.grantAccess(g);
 
         } else if ("logLoginLogout".equals(action)) {

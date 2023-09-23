@@ -1,23 +1,24 @@
 package com.example.demo_week_01.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import com.example.demo_week_01.enums.AccountStatus;
+import com.example.demo_week_01.enums.RoleStatus;
+import jakarta.persistence.*;
 
 @Entity
 public class Role {
     @Id
     private String role_id;
+    @Column(nullable = false)
     private String role_name;
+    @Column(nullable = false)
     private String description;
     @Enumerated(EnumType.ORDINAL)
-    private AccountStatus status;
+    private RoleStatus status;
 
     public Role() {
     }
 
-    public Role(String role_id, String role_name, String description, AccountStatus status) {
+    public Role(String role_id, String role_name, String description, RoleStatus status) {
         this.role_id = role_id;
         this.role_name = role_name;
         this.description = description;
@@ -48,11 +49,11 @@ public class Role {
         this.description = description;
     }
 
-    public AccountStatus getStatus() {
+    public RoleStatus getStatus() {
         return status;
     }
 
-    public void setStatus(AccountStatus status) {
+    public void setStatus(RoleStatus status) {
         this.status = status;
     }
 }

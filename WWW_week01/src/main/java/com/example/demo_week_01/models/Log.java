@@ -11,9 +11,13 @@ public class Log {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Account account;
+    @Column(nullable = false)
     private LocalDateTime loginDate;
+    @Column(nullable = false)
     private LocalDateTime logoutDate;
+    @Column(nullable = false)
     private String note;
 
     public Log() {

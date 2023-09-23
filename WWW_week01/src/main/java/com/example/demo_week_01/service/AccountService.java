@@ -1,7 +1,8 @@
 package com.example.demo_week_01.service;
 
+import com.example.demo_week_01.enums.AccountStatus;
 import com.example.demo_week_01.models.Account;
-import com.example.demo_week_01.models.AccountStatus;
+
 import com.example.demo_week_01.resource.AcountRepository;
 
 import jakarta.inject.Inject;
@@ -36,7 +37,7 @@ public class AccountService {
 
     public void delete(String userName) {
         Account a = repository.find(userName);
-        a.setStatus(AccountStatus.DELETED);
+        a.setStatus(AccountStatus.DELETE) ;
     }
 
     public List<Account> dAccByRole() {

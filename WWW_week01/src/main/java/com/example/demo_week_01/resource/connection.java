@@ -9,7 +9,7 @@ public class connection {
     private static  connection instance;
 
   private connection (){
-      fact = Persistence.createEntityManagerFactory("www_week1");
+      fact = Persistence.createEntityManagerFactory("default");
 
   }
 

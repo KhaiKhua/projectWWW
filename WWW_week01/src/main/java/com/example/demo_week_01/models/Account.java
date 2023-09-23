@@ -1,14 +1,19 @@
 package com.example.demo_week_01.models;
 
+import com.example.demo_week_01.enums.AccountStatus;
 import jakarta.persistence.*;
 
 @Entity
 public class Account {
     @Id
     private String account_id;
+    @Column(nullable = false)
     private String full_name;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
     private String phone;
     @Column(columnDefinition = "tinyint(4)")
     @Enumerated(EnumType.ORDINAL)
