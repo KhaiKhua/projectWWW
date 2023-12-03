@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>Title</title>
+</head>
+<body>
+<h2>Tim kiếm ứng cử viên cho công ty</h2>
+<form th:action="@{/company/getcandidate}" method="post">
+    <div >
+        <label>Nhap id công ty:</label>
+        <input type="text" placeholder="Enter IdCompany" name="id"/>
+    </div>
+    <button type="submit"> tìm</button>
+</form>
+    <div th:if="${setCan != null}" th:each="can:${setCan}">
+        <div th:text="${can.getFullName()}"></div>
+        <div th:text="${can.getAddress()}"></div>
+        <div th:text="${can.getEmail()}"></div>
+        <div th:text="${can.getPhone()}"></div>
+    </div>
+
+</body>
+</html>

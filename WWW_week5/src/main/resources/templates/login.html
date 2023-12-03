@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Dang nhap</h1>
+<form th:object="${user}" th:action="@{/user/login/valid}" method="post">
+    <div >
+        <label>User Name:</label>
+        <input type="text" placeholder="Enter UserName" th:field="*{userName}"/>
+    </div>
+    <div class="form-group">
+        <label>Password:</label>
+        <input type="password" placeholder="Enter PassWord" th:field="*{passWord}"/>
+    </div>
+    <div class="box-footer mb-2">
+        <button type="submit" >Log in</button>
+    </div>
+</form>
+
+
+
+
+</body>
+</html>

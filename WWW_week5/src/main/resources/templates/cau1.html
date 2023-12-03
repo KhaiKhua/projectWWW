@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>thong bao tìm việc</title>
+</head>
+    <body>
+    <H1> danh sách tuyển việc làm</H1>
+            <button th:each ="job:${list}">
+                <div th:text="${job.getJob().getName()}"></div>
+                <text>-------------------------</text>
+                <div th:each="skill:${job.getSkills()}">
+                    <div th:text="${skill.getSkillName()}"></div>
+                </div>
+            </button>
+            </br>
+            <a th:href="@{/user/login}">login</a>
+            </br>
+            <a th:href="@{/company/cau3}">    gợi ý nhân viên</a>
+</body>
+</html>

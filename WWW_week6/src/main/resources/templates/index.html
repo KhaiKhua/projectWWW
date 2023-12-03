@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Post List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="container justify-content-center">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">WebSiteName</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a th:href="@{/post/{id}(id=${idUser},size=${pagee.size},page=1)}" th:class="${pageNumber==pagee.number+1}? active">Page 1</a></li>
+                    <li><a th:href="@{/post/{id}(id=${idUser},size=${pagee.size},page=2)}"  th:class="${pageNumber==pagee.number+1}? active">Page 2</a></li>
+                    <li><a th:href="@{/post/{id}(id=${idUser},size=${pagee.size},page=3)}"  th:class="${pageNumber==pagee.number+1}? active">Page 3</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="row">
+            <h1 class="text-center">Post List</h1>
+        </div>
+
+        <div class="row">
+            <div th:each="post,iStat:${pagee.content}"  class="col-md-3 mt-3 mb-3" style="margin-bottom: 2%">
+
+                <div th:text="${post.title}"></div>
+                <div th:text="${post.content}"></div>
+                <div th:text="${post.summary}"></div>
+                <div th:text="${post.author}"></div>
+                <div class="box-footer mb-2">
+                    <a class="btn btn-primary" th:href="@{/comment/{id}/{idUser}(id=${post.id},idUser=${idUser})}" >View</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1" th:if="${pagee.totalPages>0}" th:each="pageNumber:${pageNumbers}">
+            <a th:href="@{/post/{id}(id=${idUser},size=${pagee.size},page=${pageNumber})}" th:text="${pageNumber}" th:class="${pageNumber==pagee.number+1}? active"></a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<h1> BÀI POST</h1>
+<div>
+    <div th:text="${post.metaTitle}"></div>
+    <div th:text="${post.title}"></div>
+    <div th:text="${post.author.getFirstName()}"></div>
+    <!--  <div th:value="*{title}"></div>-->
+    <!--  <div th:value="*{author}"></div>-->
+</div>
+<h4>COMMENT</h4>
+<div th:each="c:${ds}" class="container">
+
+    <div class="row">
+
+        <div class="col-md-1" th:text="${c.getPostComment().getUser().getLastName()}"></div>
+        <div class="col-md-3" th:text="${c.getPostComment().getContent()}"></div>
+        <a th:href="@{/comment/reInput/{idCom}/{id}/{idUser}(idCom=${c.getPostComment().getId()},id=${post.id},idUser=${idUser})}">
+            Trả lời</a>
+        <form th:if="${ idCom==c.getPostComment().getId()&& n==true}"
+              th:action="@{/comment/input/{idCom}/{id}/{idUser} (idCom=${c.getPostComment().getId()},id=${post.id},idUser=${idUser})}"
+              method="post">
+            <div>nhan 2 làn trả lời sẽ mất</div>
+            <input type="text" placeholder="Enter Comment" name="title">
+            <button type="submit"> Trả lời</button>
+        </form>
+    </div>
+
+    <div  th:each="d:${c.getComments()}">
+        <div class="row ml-2" style="margin-left: 100px">
+            <div class="col-md-1" th:text="${d.getUser().getLastName()}"></div>
+            <div class="col-md-3" th:text="${d.getContent()}"></div>
+            <a th:href="@{/comment/reInput/{idCom}/{id}/{idUser}(idCom=${d.getId()},id=${post.id},idUser=${idUser})}"> Trả
+                lời</a>
+            <form th:if="${ idCom==d.getId()&& n==true}"
+                  th:action="@{/comment/input/{idCom}/{id}/{idUser} (idCom=${c.getPostComment().getId()},id=${post.id},idUser=${idUser})}"
+                  method="post">
+                <div>nhan 2 làn trả lời sẽ mất</div>
+                <input type="text" placeholder="Enter Comment" name="title">
+                <button type="submit"> Trả lời</button>
+            </form>
+        </div>
+
+    </div>
+
+
+</div>
+</div>
+<form th:action="@{/comment/input/{id}/{idUser} (id=${post.id},idUser=${idUser})}" method="post">
+    <input type="text" placeholder="Enter Comment" name="title">
+    <button type="submit"> Comment</button>
+</form>
+
+</body>
+</html>

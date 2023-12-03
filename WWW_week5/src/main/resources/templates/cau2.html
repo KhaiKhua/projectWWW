@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Goi y cong viec</title>
+</head>
+<body>
+<h1>GOI Y VIEC LAM </h1>
+
+<button th:each="job:${danhsach}">
+    <div th:text="${job.getName()}"></div>
+    <div>cong ty:</div>
+    <div th:text="${job.getCompany().getName()}"> </div>
+    <div>lương :</div>
+    <div th:text="${job.getSalary()}"></div>
+
+</button>
+
+</div>
+</br>
+<a th:href="@{/skill/getSkill/{id}(id=${id})}">Các kĩ năng còn thiếu</a>
+
+</body>
+</html>

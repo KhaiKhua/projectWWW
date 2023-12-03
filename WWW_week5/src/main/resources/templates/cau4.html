@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> GỢI Ý KỈ NĂNG CẦN HỌC</h1>
+<button th:each =" k:${listSkill}">
+
+    <text>-------------------------</text>
+    <div th:text="${k.getSkillName()}">
+    <div th:text="${k.getSkillType().values()}">
+        <text>-------------------------</text>
+    </div>
+</button>
+</body>
+</html>
